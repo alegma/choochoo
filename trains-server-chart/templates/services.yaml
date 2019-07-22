@@ -7,7 +7,8 @@ metadata:
     platform: trains
   namespace: {{ .Values.trains.namespace }}
   annotations:
-    {{ .Values.services.annotations }}
+    {{ .Values.services.annotations.preInstall }}
+    {{ .Values.services.annotations.postDelete }}
 spec:
   selector:
     trains: webserver
@@ -27,7 +28,8 @@ metadata:
     platform: trains
   namespace: {{ .Values.trains.namespace }}
   annotations:
-    {{ .Values.services.annotations }}
+    {{ .Values.services.annotations.preInstall }}
+    {{ .Values.services.annotations.postDelete }}
 spec:
   selector:
     trains: apiserver
@@ -47,7 +49,8 @@ metadata:
     platform: trains
   namespace: {{ .Values.trains.namespace }}
   annotations:
-    {{ .Values.services.annotations }}
+    {{ .Values.services.annotations.preInstall }}
+    {{ .Values.services.annotations.postDelete }}
 spec:
   selector:
     trains: fileserver
@@ -67,7 +70,8 @@ metadata:
     platform: trains
   namespace: {{ .Values.trains.namespace }}
   annotations:
-    {{ .Values.services.annotations }}
+    {{ .Values.services.annotations.preInstall }}
+    {{ .Values.services.annotations.postDelete }}
 spec:
   selector:
     trains: mongo
@@ -86,7 +90,8 @@ metadata:
     platform: trains
   namespace: {{ .Values.trains.namespace }}
   annotations:
-    {{ .Values.services.annotations }}
+    {{ .Values.services.annotations.preInstall }}
+    {{ .Values.services.annotations.postDelete }}
 spec:
   selector:
     trains: elasticsearch

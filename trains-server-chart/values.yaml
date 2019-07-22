@@ -10,7 +10,9 @@ apiserver:
 elasticsearch:
   esJavaOpts: "-Xms2g -Xmx2g"
 services:
-  annotations: '"helm.sh/hook": pre-install'
+  annotations:
+    preInstall: '"helm.sh/hook": pre-install'
+    postDelete: '"helm.sh/hook": post-delete'
   webserver:
     nodePort: 30080
     name: webserver-service

@@ -12,7 +12,6 @@ elasticsearch:
 services:
   annotations:
     preInstall: '"helm.sh/hook": pre-install'
-    postDelete: '"helm.sh/hook": post-delete'
   webserver:
     nodePort: 30080
     name: webserver-service

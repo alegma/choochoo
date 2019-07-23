@@ -47,7 +47,7 @@ Record to access files:
 * \*files.\<your domain name\>.* (example: trainsfiles.mydomainname.com) should point to your node on port 30081
 
 Note: by editing services.yaml you can reconfigure ports your node listens to<br>
-#####Additional Information
+#### Additional Information
 * By default, deployment is looking for node tagged as 'app: trains' but you can  
 change this when you install chart using --set flag. In values.yaml you can view all configurations you can 
 change with set. If for example you have one node, you can remove 

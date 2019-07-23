@@ -23,7 +23,7 @@ helm install allegroai/trains-server-chart
 
 This will create 'trains' namespace in your cluster and deploy everything in in it.
 
-#####Ports mapping
+#### Ports mapping
 Services expose following node ports:<br>
 app: 30080<br>
 api: 30008<br>
@@ -33,7 +33,7 @@ files: 30081<br>
 30008 maps to trains apiserver container on port 8008<br>
 30081 maps to trains fileserver container on port 8081<br>
 
-#####Accessing trains-server
+#### Accessing trains-server
 Indented way to use trains server is to create a load balancer and domain name with records pointing to it.
 Trains translates domain names in a specific way. This are the rules you need to follow for it to work. <br>
 
@@ -46,7 +46,7 @@ Record to access api:
 Record to access files:
 * \*files.\<your domain name\>.* (example: trainsfiles.mydomainname.com) should point to your node on port 30081
 
-######Note: by editing services.yaml you can reconfigure ports your node listens to
+Note: by editing services.yaml you can reconfigure ports your node listens to<br>
 #####Additional Information
 * By default, deployment is looking for node tagged as 'app: trains' but you can  
 change this when you install chart using --set flag. In values.yaml you can view all configurations you can 

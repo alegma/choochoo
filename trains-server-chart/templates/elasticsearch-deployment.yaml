@@ -1,39 +1,58 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.services.elasticsearch.name}}
+  labels:
+    app.kubernetes.io/name: elasticsearch
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/part-of: trains-server
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+  namespace: {{ .Values.trains.namespace }}
+spec:
+  selector:
+    app.kubernetes.io/name: elasticsearch
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/part-of: trains-server
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 9200
+    targetPort: 9200
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/name: {{ template "name" . }}
+    app.kubernetes.io/name: elasticsearch
     app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: 0.10.1-1
     app.kubernetes.io/part-of: trains-server
     app.kubernetes.io/managed-by: {{ .Release.Service }}
-    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version \| replace "+" "_" }}
-    trains: elasticsearch
-    platform: trains
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
   name: elasticsearch
   namespace: {{ .Values.trains.namespace }}
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: elasticsearch
-      app.kubernetes.io/instance: trains-server
-      app.kubernetes.io/version: 0.10.1-1
+      app.kubernetes.io/instance: {{ .Release.Name }}
       app.kubernetes.io/part-of: trains-server
-      trains: elasticsearch
-      platform: trains
-  minReadySeconds: 40
-  progressDeadlineSeconds: 50
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+  minReadySeconds: 50
+  progressDeadlineSeconds: 60
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app.kubernetes.io/name: elasticsearch
-        app.kubernetes.io/instance: trains-server
-        app.kubernetes.io/version: 0.10.1-1
+        app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/part-of: trains-server
-        trains: elasticsearch
-        platform: trains
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     spec:
       affinity:
         nodeAffinity:
@@ -45,14 +64,16 @@ spec:
                 values:
                 - trains
         podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                - key: app.kubernetes.io/name
-                  operator: In
-                  values:
-                  - elasticsearch
-              topologyKey: kubernetes.io/hostname
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                      - elasticsearch
+                topologyKey: kubernetes.io/hostname
       initContainers:
       - name: set-dir-owner
         image: centos:7
@@ -110,7 +131,7 @@ spec:
           name: elasticsearch-hostpath
       restartPolicy: Always
       nodeSelector:
-        {{ .Values.trains.nodeSelector}}
+        {{ .Values.trains.nodeSelector }}
       volumes:
       - name: elasticsearch-hostpath
         hostPath:

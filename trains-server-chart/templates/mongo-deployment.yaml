@@ -1,24 +1,46 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.services.mongo.name}}
+  labels:
+    app.kubernetes.io/name: mongo
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/part-of: trains-server
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+  namespace: {{ .Values.trains.namespace }}
+spec:
+  selector:
+    app.kubernetes.io/name: mongo
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/part-of: trains-server
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/name: mongo
-    app.kubernetes.io/instance: trains-server
-    app.kubernetes.io/version: 0.10.1-1
+    app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/part-of: trains-server
-    trains: mongo
-    platform: trains
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
   name: mongo
   namespace: {{ .Values.trains.namespace }}
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: mongo
-      app.kubernetes.io/instance: trains-server
-      app.kubernetes.io/version: 0.10.1-1
+      app.kubernetes.io/instance: {{ .Release.Name }}
       app.kubernetes.io/part-of: trains-server
-      trains: mongo
-      platform: trains
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
   minReadySeconds: 20
   progressDeadlineSeconds: 30
   strategy:
@@ -27,12 +49,31 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: mongo
-        app.kubernetes.io/instance: trains-server
-        app.kubernetes.io/version: 0.10.1-1
+        app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/part-of: trains-server
-        trains: mongo
-        platform: trains
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - trains
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 50
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app.kubernetes.io/name
+                      operator: In
+                      values:
+                      - mongo
+                topologyKey: kubernetes.io/hostname
       containers:
       - image: mongo:3.6.5
         name: mongo

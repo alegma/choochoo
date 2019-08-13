@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  trains-server-chart:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2019-08-13T16:39:13.299428938+03:00"
+    description: Allegro.ai trains server Helm chart for Kubernetes
+    digest: fe77e4c61c075065631b1472f89e7378737215816569d99d69981ef654eb38c1
+    name: trains-server-chart
+    urls:
+    - https://alegma.github.io/choochoo/trains-server-chart-0.10.1+1.tgz
+    version: 0.10.1+1
+generated: "2019-08-13T16:39:13.299009697+03:00"

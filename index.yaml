@@ -11,7 +11,7 @@ entries:
     - trains-server-chart-0.10.1+1.tgz
     version: 0.10.1+1
   - apiVersion: v1
-    appVersion: 0.10.1-1
+    appVersion: 0.10.1-2
     created: "2019-08-19T17:47:10.931881283+03:00"
     description: Allegro.ai trains server Helm chart for Kubernetes
     digest: 364f5a340d9b9d1a1153938165abed09f49aea3bd937dbeb730981d3429f0e07

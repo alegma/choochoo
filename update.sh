@@ -5,3 +5,4 @@ git commit -m "fdgfhgh"
 git push
 sleep 15
 helm repo update
+helm search trains -l

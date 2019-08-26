@@ -2,17 +2,8 @@ apiVersion: v1
 entries:
   trains-server-chart:
   - apiVersion: v1
-    appVersion: 0.10.2+22
-    created: "2019-08-26T12:45:15.926262648+03:00"
-    description: Allegro.ai trains server Helm chart for Kubernetes
-    digest: 0e07841cbfb1b57c7797e4db28962408fb0a7bc046f665bc49af8146902e6ea4
-    name: trains-server-chart
-    urls:
-    - trains-server-chart-0.10.2+1.tgz
-    version: 0.10.2+1
-  - apiVersion: v1
     appVersion: 0.10.1-1
-    created: "2019-08-26T12:45:15.925525203+03:00"
+    created: "2019-08-26T12:59:24.290744171+03:00"
     description: Allegro.ai trains server Helm chart for Kubernetes
     digest: ad3fd8b5dab1a709b1b5f2206578f527516d5b864af3f4e32f53c5dee6686a0a
     name: trains-server-chart
@@ -21,7 +12,7 @@ entries:
     version: 0.10.1+1
   - apiVersion: v1
     appVersion: 0.10.1-1
-    created: "2019-08-26T12:45:15.925729553+03:00"
+    created: "2019-08-26T12:59:24.290920274+03:00"
     description: Allegro.ai trains server Helm chart for Kubernetes
     digest: 364f5a340d9b9d1a1153938165abed09f49aea3bd937dbeb730981d3429f0e07
     name: trains-server-chart
@@ -30,7 +21,7 @@ entries:
     version: 0.10.1+2
   - apiVersion: v1
     appVersion: 0.10.1-3
-    created: "2019-08-26T12:45:15.925899286+03:00"
+    created: "2019-08-26T12:59:24.291097036+03:00"
     description: Allegro.ai trains server Helm chart for Kubernetes
     digest: 72e6c9ebc1798046fabc6e7f4a878e788bc6be5a7b605d118dfd95e9ba09eb6a
     name: trains-server-chart
@@ -39,11 +30,11 @@ entries:
     version: 0.10.1+3
   - apiVersion: v1
     appVersion: 0.10.1-4
-    created: "2019-08-26T12:45:15.926072332+03:00"
+    created: "2019-08-26T12:59:24.29128181+03:00"
     description: Allegro.ai trains server Helm chart for Kubernetes
     digest: 65074a347625300aba95f388c7c6b3074e01ae82f6c50eae1b2e4c3b4e7ce4b9
     name: trains-server-chart
     urls:
     - trains-server-chart-0.10.1+4.tgz
     version: 0.10.1+4
-generated: "2019-08-26T12:45:15.925258238+03:00"
+generated: "2019-08-26T12:59:24.290461854+03:00"

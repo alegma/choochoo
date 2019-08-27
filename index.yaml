@@ -2,12 +2,21 @@ apiVersion: v1
 entries:
   trains-server-chart:
   - apiVersion: v1
+    appVersion: 0.10.1-2
+    created: "2019-08-27T15:45:42.235931736+03:00"
+    description: Allegro.ai trains server Helm chart for Kubernetes
+    digest: 35de5f02065d445bac9384f56d3401ebb27cabfd1c85276cc45747c6eab893a6
+    name: trains-server-chart
+    urls:
+    - trains-server-chart-0.10.1-2.tgz
+    version: 0.10.1-2
+  - apiVersion: v1
     appVersion: 0.10.1-1
-    created: "2019-08-27T15:10:21.604567688+03:00"
+    created: "2019-08-27T15:45:42.235655306+03:00"
     description: Allegro.ai trains server Helm chart for Kubernetes
     digest: 50d14cc39be3be8e586deebe8601a5ee9c57d82e4c9b54c85600b6fe68725246
     name: trains-server-chart
     urls:
     - trains-server-chart-0.10.1-1.tgz
     version: 0.10.1-1
-generated: "2019-08-27T15:10:21.604263024+03:00"
+generated: "2019-08-27T15:45:42.235234358+03:00"
